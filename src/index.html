@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./output.css" rel="stylesheet" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body
+    style="font-family: Poppins"
+    class="bg-sky-200"
+  >
+    <!-- Header -->
+    <header>
+      <nav class="h-16 bg-gray-600 text-white flex justify-around items-center">
+        <img
+          class="w-[70px] h-[65px]"
+          src="./assets/Images/cloud1.png"
+          alt="Cloud-Image"
+        />
+        <h1 class="text-xl font-bold">Weather Report</h1>
+      </nav>
+    </header>
+    <!-- Header -->
+
+    <!-- Input and search -->
+
+    <section
+      class="p-2 flex md:flex-row flex-col gap-4 mt-5 mb-5 justify-center items-center"
+    >
+      <input
+        type="text"
+        placeholder="Enter a city name"
+        class="px-5 py-2 rounded-md outline-none w-[300px] h-[40px] focus:outline-pink-500"
+        id="userInput"
+      />
+      <button
+        class="w-auto px-5 py-2 bg-stone-900 rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+        id="searchBtn"
+      >
+        Search
+      </button>
+      <button
+        class="w-auto px-5 py-2 bg-stone-900 rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+        id="currentLocationBtn"
+      >
+        Use current location
+      </button>
+    </section>
+
+    <!-- Input and search -->
+
+    <!-- Weather display Container -->
+    <section>
+      <div
+        class="w-[90%] lg:h-[300px] md:h-[400px] h-[500px] mt-3 m-auto rounded shadow-gray-500 shadow-lg overflow-hidden"
+        style="background-color: #e6f0f3; color: #145063"
+      >
+        <div class="w-[100%] h-[20%] flex items-center">
+          <span class="ml-5" id="LocationSpan">Loading...</span>
+        </div>
+
+        <div
+          class="w-[100%] h-[50%] flex md:flex-row flex-col md:items-center jus gap-[5%]"
+        >
+          <div class="ml-5">
+            <img
+              src="./assets/Images/cloud1.png"
+              alt="Cloud Image"
+              width="70px"
+              height="70px"
+            />
+          </div>
+          <div class="text-2xl font-bold md:ml-0 ml-5" id="actualTpmTextDiv">
+            Loading...
+          </div>
+          <div
+            class="text-2xl font-semibold md:ml-0 ml-5"
+            id="feelsLikeTpmTextDiv"
+          >
+            Loading...
+          </div>
+        </div>
+        <div class="w-[100%] h-[30%]">
+          <div
+            class="mb-1 text-xl font-semibold ml-5"
+            id="weatherDescriptionDiv"
+          >
+            Loading...
+          </div>
+          <div class="ml-5">
+            <div class="flex gap-[2%]">
+              <div>
+                <div>Cloud cover</div>
+                <div id="cloudCoverDiv">Loading...</div>
+              </div>
+              <div>
+                <div>Pressure</div>
+                <div id="pressureDiv">Loading...</div>
+              </div>
+              <div>
+                <div>Wind Direction</div>
+                <div id="windDirectionDiv">Loading...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="w-[90%] h-[50px] flex items-end m-auto">
+        <span class="text-xl font-bold">Current Weather</span>
+      </div>
+
+      <div
+        class="w-[90%] lg:h-[300px] md:h-[450px] sm:h-[500px] h-[1000px] m-auto mb-10 rounded shadow-gray-500 shadow-lg overflow-hidden flex flex-wrap justify-center items-center gap-[4%]"
+        style="background-color: #e6f0f3"
+      >
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Wind speed</div>
+            <div class="mt-1 ml-2" id="windSpeedDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/windspeed.png"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Max Temperature</div>
+            <div class="mt-1 ml-2" id="maxTempDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/maxTemp.jpg"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Min Temperature</div>
+            <div class="mt-1 ml-2" id="minTempDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/minTemp.webp"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Sunrise</div>
+            <div class="mt-1 ml-2" id="sunriseDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/sunrise.png"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Sunset</div>
+            <div class="mt-1 ml-2" id="sunsetDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/sunset.png"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Humidity</div>
+            <div class="mt-1 ml-2" id="humidityDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/humidity.png"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Visibility</div>
+            <div class="mt-1 ml-2" id="visibilityDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/visibility.png"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+
+        <div
+          class="w-[250px] h-[80px] bg-white rounded flex shadow-gray-500 shadow-lg"
+        >
+          <div class="w-[70%] h-[100%] font-medium">
+            <div class="mt-3 ml-2">Clouds</div>
+            <div class="mt-1 ml-2" id="cloudsDiv">Loading...</div>
+          </div>
+          <div class="w-[30%] h-[100%] flex items-center justify-center">
+            <img
+              src="./assets/Images/cloud2.png"
+              alt="Icon"
+              width="70%"
+              height="70%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- Weather display Container -->
+  </body>
+</html>
