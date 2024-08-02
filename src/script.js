@@ -16,6 +16,8 @@ const sunsetDiv = document.getElementById("sunsetDiv");
 const humidityDiv = document.getElementById("humidityDiv");
 const visibilityDiv = document.getElementById("visibilityDiv");
 const cloudsDiv = document.getElementById("cloudsDiv");
+const forecastContainer = document.getElementById("forecastContainer");
+const forecastLodingDIv = document.getElementById("forecastLodingDIv");
 
 let actalTpm;
 let feelsLikeTpm;
@@ -135,6 +137,45 @@ currentLocationBtn.addEventListener("click", () => {
 
               //   console.log(res);
               //   console.log(position.coords.latitude, position.coords.longitude);
+            });
+            getForecastReportBYCoordinates(
+              position.coords.latitude,
+              position.coords.longitude
+            ).then((res) => {
+              forecastLodingDIv.textContent = "";
+              if (res.cod == 200) {
+                forecastLodingDIv.style.display = "none";
+                res.list.forEach((ele) => {
+                  const divCard = document.createElement("div");
+                  divCard.classList =
+                    "w-[200px] h-[90%] bg-white rounded flex shadow-gray-500 shadow-lg p-3 flex-col gap-2 justify-center items-center";
+                  const dateDiv = document.createElement("div");
+                  dateDiv.textContent = new Date(
+                    ele.dt * 1000
+                  ).toLocaleDateString();
+                  const image = document.createElement("img");
+                  image.src = "./assets/Images/cloud2.png";
+                  image.alt = "Icon";
+                  const tempDiv = document.createElement("div");
+                  actalTpm = parseInt(ele.main.temp) - 273.15;
+                  const actalTpminCelcius = actalTpm.toFixed(2);
+                  tempDiv.textContent = `Temp : ${actalTpminCelcius} °C`;
+                  const windDiv = document.createElement("div");
+                  windDiv.textContent = `Wind speed : ${ele.wind.speed} km`;
+                  const humidDiv = document.createElement("div");
+                  humidDiv.textContent = `Humidity : ${ele.main.humidity} %`;
+                  divCard.appendChild(dateDiv);
+                  divCard.appendChild(image);
+                  divCard.appendChild(tempDiv);
+                  divCard.appendChild(windDiv);
+                  divCard.appendChild(humidDiv);
+                  forecastContainer.appendChild(divCard);
+                });
+              } else {
+                forecastLodingDIv.textContent = "Error fetching data";
+                forecastLodingDIv.style.color = "red";
+              }
+              // console.log(res)
             });
           });
         } else {
@@ -287,6 +328,40 @@ searchBtn.addEventListener("click", () => {
         ? `${res?.clouds?.all} %`
         : `Error : ${res.message}`;
     });
+    getForecastData(city).then((res) => {
+      forecastLodingDIv.textContent = "";
+      if (res.cod == 200) {
+        forecastLodingDIv.style.display = "none";
+        res.list.forEach((ele) => {
+          const divCard = document.createElement("div");
+          divCard.classList =
+            "w-[200px] h-[90%] bg-white rounded flex shadow-gray-500 shadow-lg p-3 flex-col gap-2 justify-center items-center";
+          const dateDiv = document.createElement("div");
+          dateDiv.textContent = new Date(ele.dt * 1000).toLocaleDateString();
+          const image = document.createElement("img");
+          image.src = "./assets/Images/cloud2.png";
+          image.alt = "Icon";
+          const tempDiv = document.createElement("div");
+          actalTpm = parseInt(ele.main.temp) - 273.15;
+          const actalTpminCelcius = actalTpm.toFixed(2);
+          tempDiv.textContent = `Temp : ${actalTpminCelcius} °C`;
+          const windDiv = document.createElement("div");
+          windDiv.textContent = `Wind speed : ${ele.wind.speed} km`;
+          const humidDiv = document.createElement("div");
+          humidDiv.textContent = `Humidity : ${ele.main.humidity} %`;
+          divCard.appendChild(dateDiv);
+          divCard.appendChild(image);
+          divCard.appendChild(tempDiv);
+          divCard.appendChild(windDiv);
+          divCard.appendChild(humidDiv);
+          forecastContainer.appendChild(divCard);
+        });
+      } else {
+        forecastLodingDIv.textContent = "Error fetching data";
+        forecastLodingDIv.style.color = "red";
+      }
+      // console.log(res)
+    });
   } else {
     alert("Please Enter a city name");
   }
@@ -392,3 +467,65 @@ getWeatherReport().then((res) => {
     : `Error : ${res.message}`;
 });
 /* calling the function with default Location  */
+
+async function getForecastData(cityName = "Hyderabad") {
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=aaab9223e458518b5949e5298b6c8f99`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    return err;
+  }
+}
+/* calling the function with default  */
+getForecastData().then((res) => {
+  forecastLodingDIv.textContent = "";
+  if (res.cod == 200) {
+    forecastLodingDIv.style.display = "none";
+    res.list.forEach((ele, index) => {
+      const divCard = document.createElement("div");
+      divCard.classList =
+        "w-[200px] h-[90%] bg-white rounded flex shadow-gray-500 shadow-lg p-3 flex-col gap-2 justify-center items-center";
+      const dateDiv = document.createElement("div");
+      dateDiv.textContent = new Date(ele.dt * 1000).toLocaleDateString();
+      const image = document.createElement("img");
+      image.src = "./assets/Images/cloud2.png";
+      image.alt = "Icon";
+      const tempDiv = document.createElement("div");
+      actalTpm = parseInt(ele.main.temp) - 273.15;
+      const actalTpminCelcius = actalTpm.toFixed(2);
+      tempDiv.textContent = `Temp : ${actalTpminCelcius} °C`;
+      const windDiv = document.createElement("div");
+      windDiv.textContent = `Wind speed : ${ele.wind.speed} km`;
+      const humidDiv = document.createElement("div");
+      humidDiv.textContent = `Humidity : ${ele.main.humidity} %`;
+      divCard.appendChild(dateDiv);
+      divCard.appendChild(image);
+      divCard.appendChild(tempDiv);
+      divCard.appendChild(windDiv);
+      divCard.appendChild(humidDiv);
+      forecastContainer.appendChild(divCard);
+    });
+  } else {
+    forecastLodingDIv.textContent = "Error fetching data";
+    forecastLodingDIv.style.color = "red";
+  }
+  // console.log(res)
+});
+/* calling the function with default  */
+
+/* forecast by location */
+async function getForecastReportBYCoordinates(lat, lon) {
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=aaab9223e458518b5949e5298b6c8f99`
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    return err;
+  }
+}
+/* forecast by location */

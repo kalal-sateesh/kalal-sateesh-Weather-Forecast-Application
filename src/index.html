@@ -13,10 +13,7 @@
     <link href="./output.css" rel="stylesheet" />
     <script src="./script.js" defer></script>
   </head>
-  <body
-    style="font-family: Poppins"
-    class="bg-sky-200"
-  >
+  <body style="font-family: Poppins" class="bg-sky-200">
     <!-- Header -->
     <header>
       <nav class="h-16 bg-gray-600 text-white flex justify-around items-center">
@@ -262,7 +259,18 @@
       </div>
     </section>
 
-    
+    <section>
+      <div class="w-[90%] h-[50px] flex items-end m-auto">
+        <span class="text-xl font-bold">5-day forecast</span>
+      </div>
+      <div
+        class="w-[90%] h-auto m-auto mb-10 rounded shadow-gray-500 shadow-lg flex flex-wrap justify-center items-center gap-[20px] py-[20px]"
+        style="background-color: #e6f0f3"
+        id="forecastContainer"
+      >
+        <div id="forecastLodingDIv">Loading...</div>
+      </div>
+    </section>
     <!-- Weather display Container -->
   </body>
 </html>
