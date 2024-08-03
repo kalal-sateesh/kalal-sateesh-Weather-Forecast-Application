@@ -31,6 +31,7 @@
 
     <section
       class="p-2 flex md:flex-row flex-col gap-4 mt-5 mb-5 justify-center items-center"
+      id="inputSearchSection"
     >
       <input
         type="text"
@@ -53,6 +54,50 @@
     </section>
 
     <!-- Input and search -->
+
+    <!-- Popular locations -->
+    <section
+      class="w-[90%] h-auto m-auto mb-10 rounded shadow-gray-500 shadow-lg flex flex-wrap justify-center items-center gap-[20px] py-[20px]"
+      style="background-color: #e6f0f3"
+    >
+      <div class="text-xl text-start w-[95%]">Popular Locations</div>
+      <div
+        class="w-[95%] flex md:flex-row flex-col mt-5 mb-5 justify-between items-center gap-4"
+      >
+        <button
+          class="w-auto px-5 py-2 bg-[#5519C1] rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+          id="BengaluruBtn"
+        >
+          Bengaluru
+        </button>
+        <button
+          class="w-auto px-5 py-2 bg-[#5519C1] rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+          id="NewYorkBtn"
+        >
+          New York
+        </button>
+        <button
+          class="w-auto px-5 py-2 bg-[#5519C1] rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+          id="MumbaiBtn"
+        >
+          Mumbai
+        </button>
+
+        <button
+          class="w-auto px-5 py-2 bg-[#5519C1] rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+          id="LondonBtn"
+        >
+          London
+        </button>
+        <button
+          class="w-auto px-5 py-2 bg-[#5519C1] rounded-lg border-none text-gray-200 hover:bg-lime-300 hover:text-gray-800 transition-all duration-500"
+          id="DelhiBtn"
+        >
+          Delhi
+        </button>
+      </div>
+    </section>
+    <!-- Popular locations -->
 
     <!-- Weather display Container -->
     <section>
@@ -264,7 +309,7 @@
         <span class="text-xl font-bold">5-day forecast</span>
       </div>
       <div
-        class="w-[90%] h-auto m-auto mb-10 rounded shadow-gray-500 shadow-lg flex flex-wrap justify-center items-center gap-[20px] py-[20px]"
+        class="w-[90%] h-auto m-auto mb-10 rounded shadow-gray-500 shadow-lg flex  gap-[10px] py-[20px] overflow-x-auto"
         style="background-color: #e6f0f3"
         id="forecastContainer"
       >
